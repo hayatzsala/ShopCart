@@ -34,7 +34,7 @@
         <javac srcdir="${src.test.dir}"  destdir="${result.testclasses.dir}" debug="true" includeantruntime="false">
             <classpath>
                 
-                <path refid="NecessaryLibraries"/>
+                <path refid="JUnit 4.libraryclasspath"/>
                 <pathelement location="${result.javaclasses.dir}"/>
             </classpath>
         </javac>        

@@ -5,21 +5,16 @@ import org.junit.Test;
 
 public class OnlineBooksTest {
 
-	@Test
-	public void testZero() {
+	@Test 
+	public void testCart() {
 		
 		assertEquals(0.0 ,OnlineBooks.totalCost(),0);
-	}
-	 @Ignore
-	 public void testOne() {
+		
+		OnlineBooks.AddToCart();
 		 assertEquals(127.0, OnlineBooks.totalCost(),0);
-	 }
-	 
-	 @Ignore
-	 public void testMany() {
+		 
+		 OnlineBooks.AddToCart();
 		 assertEquals(227.0,OnlineBooks.totalCost(),0);
-		 
-		 
-	 }
-
+	}
+	
 }
