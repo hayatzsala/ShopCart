@@ -9,9 +9,7 @@ public class OnlineBooks {
 	
 	/**
 	 * this method for add book to your shopping cart
-	 * @param name :the name of book
-	 * @param p    :the prize of one unit
-	 * @param num  :the number of units of one book
+
 	 */
 	public static void AddToCart() {
 		String name=null;
@@ -26,18 +24,7 @@ public class OnlineBooks {
 		shopcart.add(newOne);		
 		JOptionPane.showMessageDialog(null,"Thank you, The book added successfully");
 	}
-	/**
-	 * for delete any book from the shopping cart
-	 * @param name
-	 */
-	public static void DelFrCart(String name) {
-		for(Book book : shopcart) {
-			if(book.getName().equals(name)) {
-				shopcart.remove(book);
-			}
-		}
-		
-	}
+	
 	/**
 	 * find the total cost for your shopping cart
 	 * @return
