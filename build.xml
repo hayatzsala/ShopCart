@@ -11,27 +11,12 @@
 	        <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
 	        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
 	    </path>
-	    <path id="ShopCart.classpath">
-	        <pathelement location="bin"/>
-	        <path refid="JUnit 4.libraryclasspath"/>
-	    </path>
-	    <path id="run.OnlineBooks.classpath">
-	        <path refid="ShopCart.classpath"/>
-	        <path refid="JUnit 4.libraryclasspath"/>
-	    </path>
-	    <path id="run.OnlineBookTest.classpath">
-	        <path refid="ShopCart.classpath"/>
-	        <path refid="JUnit 4.libraryclasspath"/>
-	    </path>
-	    <path id="run.OnlineBooksTest.classpath">
-	        <path refid="ShopCart.classpath"/>
-	        <path refid="JUnit 4.libraryclasspath"/>
-	    </path>
+	   
     <target name="compile">
 		<mkdir dir="${result.javaclasses.dir}"/>
     	<javac srcdir="${src.java.dir}"
          destdir="${result.javaclasses.dir}"
-         includeantruntime="false"
+         includeantruntime="true"
          debug="on"/>
 
     </target>
@@ -43,35 +28,34 @@
 			</jar>
 
 	    </target>
-	
 
-	    
-	        
-	    <target name="compile-testcases" depends="compile">
-	        <mkdir dir="${result.testclasses.dir}"/>
-	        <javac srcdir="${src.test.dir}"  destdir="${result.testclasses.dir}" debug="true" includeantruntime="false">
-	            <classpath refid="ShopCart.classpath">
-	                
-	               
-	            </classpath>
-	        </javac>        
-	    </target>
-	    
-	    <target name="test" depends="compile-testcases">
-	        <!--fork : each test will run in its own JVM (to seperate test cases)-->
-	        <junit printsummary="true" haltonfailure="true" fork="true">
-	            <classpath>
-	                <path refid="NecessaryLibraries"></path>
-	                <pathelement location="${result.javaclasses.dir}"/>
-	                <pathelement location="${result.testclasses.dir}"/>
-	            </classpath>
-	            <formatter type="brief" usefile="false"/>
-	            <batchtest >
-	                <fileset dir="${result.testclasses.dir}" >
-	                     <include name="**/*Test.class"/>
-	                </fileset>
-	            </batchtest>
-	            
-	        </junit>
-	    </target>
+    <target name="compile-testcases" depends="compile">
+        <mkdir dir="${result.testclasses.dir}"/>
+        <javac srcdir="${src.test.dir}"  destdir="${result.testclasses.dir}" debug="true" includeantruntime="false">
+            <classpath>
+                
+                <path refid="NecessaryLibraries"/>
+                <pathelement location="${result.javaclasses.dir}"/>
+            </classpath>
+        </javac>        
+    </target>
+    
+    <target name="test" depends="compile-testcases">
+        <!--fork : each test will run in its own JVM (to seperate test cases)-->
+        <junit printsummary="true" haltonfailure="true" fork="true">
+            <classpath>
+                <path refid="JUnit 4.libraryclasspath"></path>
+                <pathelement location="${result.javaclasses.dir}"/>
+                <pathelement location="${result.testclasses.dir}"/>
+            </classpath>
+            <formatter type="brief" usefile="false"/>
+            <batchtest >
+                <fileset dir="${result.testclasses.dir}" >
+                     <include name="**/*Test.class"/>
+                </fileset>
+            </batchtest>
+            
+        </junit>
+    </target>
+    
 	    </project>
